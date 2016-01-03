@@ -105,7 +105,9 @@ var Pannel = {
 $("#submit_user_name").click(function(){
     var userName = $("#input_user_name").val();
     if(userName != ""){
-        sendUserName(userName);
+		$(this).hide();
+		$(this).parents("#enter_user_name_center").append("<div id='wait_info'>Game is loading...</div>")
+        //sendUserName(userName);
     }
 });
 $("#chatInput").submit(function(e){
