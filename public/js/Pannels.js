@@ -77,6 +77,25 @@ var Pannel = {
             $("#currAmo").css("color","white");
         }
 
+    },
+    toggleChatInput : function(){
+        $("#chatInput").toggle(); 
+        if($("#chatInput").css("display") == "block"){
+            $("#chatInputField").focus();
+            Key.disabled = true;
+            return true;
+        }
+        else{
+            Key.disabled = false;
+            $("#chatInputField").blur();
+            return false;
+        }
+    },
+    addMsgToChat : function(from, msg){
+        //using text() is a little safer, but it still not really save for escaping characters
+        $("#chatMsg_wrapper").append('<div class="chatMsg"><span class="sender">'+ from +' </span><span class="msg">'+ msg +'</span></div>');
+        var curMsg = $(".chatMsg:last"); 
+        setTimeout(function(){ curMsg.fadeOut() }, 5000);
     }
     
 } 
@@ -88,4 +107,10 @@ $("#submit_user_name").click(function(){
     if(userName != ""){
         sendUserName(userName);
     }
+});
+$("#chatInput").submit(function(e){
+    e.preventDefault();
+    Chat.sendMsg($("#chatInputField").val());
+    $("#chatInputField").val("");
+    return false;
 });

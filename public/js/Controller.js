@@ -140,6 +140,15 @@ Controller.prototype.sendShotFired = function(){
 Controller.prototype.shotFired = function(pos){
     this.render.shotFired(pos);
 }
+
+//Chat 
+//================
+Controller.prototype.recivedMsg = function(id, msg){
+    var sender;
+    if(id == this.localPlayer.getID()) sender = this.localPlayer;
+    else sender = this._findPlayer(id);
+    Pannel.addMsgToChat(sender.getName(), msg);
+}
  
 //Helper Methods
 //===========================================================

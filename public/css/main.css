@@ -88,7 +88,6 @@ html, body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    display: none;
 }
 
 #enter_user_name_center{
@@ -129,6 +128,33 @@ html, body {
     margin-left: auto;
     margin-right: auto;
     display: Block;
+}
+#controlls{
+    position: fixed;
+    bottom: 30px;
+    color: White;
+    
+}
+.controll{
+    float: left;
+    border: 2px solid white;
+    padding: 6px;
+    border-radius: 5px;
+    width: 18px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.08);
+}
+.controll_wrapper{
+    width: 500px;
+    height: 50px;
+    padding-top: 5px;
+    margin-left: 70px;
+}
+.controll_description{
+    float: left;
+    font-size: 20px;
+    padding-left: 18px;
+    padding-top: 6px;
 }
 
 #you_are_dead{
@@ -226,3 +252,65 @@ html, body {
     top: 9px;
 }
 
+
+#chatInput{
+    background: rgba(0,0,0,0.5);
+    display: block;
+    position: fixed;
+    width: 80%;
+    left: 50px;
+    bottom: 40px;
+    z-index: 1000;
+    padding: 5px;
+    padding: 4px;
+    padding-left: 34px;
+    display: none;
+}
+#chatSymbol{
+    position: absolute;
+    left: 10px;
+    color: white;
+    font-weight: bold;
+    padding-top: 2px;
+}
+#chatInputField{
+    font-size: 17px;
+    background: transparent;
+    width: 100%;
+    color: white;
+    border: 0px solid black;
+}
+
+
+#chatWindows{
+    display: block;
+    position: fixed;
+    width: 80%;
+    left: 50px;
+    bottom: 80px;
+    z-index: 1000;
+    background: transparent;
+    height: 100%;
+    pointer-events: none;
+}
+#chatMsg_wrapper{
+    position: absolute;
+    height: auto;
+    bottom: 0;
+    background: transparent;
+    width: 100%;
+}
+.chatMsg{
+    position: relative;
+}
+.sender{
+    font-weight: bold;
+    color: #c63333;
+    text-shadow: 1px 1px black;
+}
+.msg{
+    font-weight: bold;
+    //color: #cc9920;
+    color: white;
+    text-shadow: 1px 1px black;
+}

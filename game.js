@@ -33,6 +33,7 @@ function onSocketConnection(client) {
     client.on("player suicide", onPlayerSuicide);
     client.on("request resapwn", onRespawnPlayer);
     client.on("player fired shot", onShotFired);
+    client.on("send msg", onClientSentMsg);
 };
 
 
@@ -158,6 +159,15 @@ function onShotFired(){
     var position = shooter.getXYZ(); 
     this.broadcast.emit("shot fired", {pos : position});
 }
+
+//Chat
+//===================================
+//data.msg => msg content
+function onClientSentMsg(data){
+    //Send this msg to all other clients (including self)
+    socket.emit("recived msg", {from: this.id, msg : data.msg});
+}
+
 //Helper functions
 //====================================================================================================
 //Searching player by its ID

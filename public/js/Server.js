@@ -1,12 +1,16 @@
 /// <reference path="Controller.js"/>
 var controller; //Global Controller Variable
 var socket; //global socket variable 
-
+var gameStarted = false;
 //Starting point of the application!
 $(document).ready(function(){
     initSockets(); 
-    addGameEvents(); 
-    controller = new Controller();
+    //To disable the "Enter username screen":
+    // - uncomment the next two lines
+    // - comment the lines inside onStartRender() (inside this file, Server.js)
+    // - add a "display: none" to #enter_user_name in css/main.css
+    //addGameEvents(); 
+    //controller = new Controller();
 });  
 
 function initSockets(){	
@@ -29,6 +33,7 @@ function addGameEvents(){
     socket.on("update hitpoints", onUpdateHitPoints);
     socket.on("respawn player", onRespawnPlayer);
     socket.on("shot fired", onShotFired);
+    socket.on("recived msg", onRecivedMsg);
 }
 
 //Close sockets when leaving page, but still... the Interupt error occures in firefox, but it seems to be a firefox bug and will not affect the application
@@ -49,8 +54,11 @@ function onSocketDisconnect() {
 //Start actuall game after user entered username
 //The controller variable is a global variable from Controller.js 
 function onStartRender(){
-    //addGameEvents();
-    //controller = new Controller();
+    if(!gameStarted)
+        addGameEvents();
+        controller = new Controller();
+    
+    gameStarted = true; 
 }
 //Initilizes the Game after the Client Requested it
 //data.localPlayer => model player object
@@ -96,6 +104,11 @@ function onRespawnPlayer(data){
 function onShotFired(data){
     controller.shotFired(data.pos);
 }
+//data.from => Sender of the msg
+//data.msg => msg content
+function onRecivedMsg(data){
+    controller.recivedMsg(data.from, data.msg);
+}
 
 //Outgoing Actions to the Server
 //===================================================================
@@ -121,4 +134,7 @@ function sendSuicide(){
 }
 function sendShotFired(){ 
     socket.emit("player fired shot", {});
+}
+function sendChatMsg(msg){
+    socket.emit("send msg", {msg : msg});
 }

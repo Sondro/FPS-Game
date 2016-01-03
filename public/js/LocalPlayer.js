@@ -139,6 +139,19 @@ LocalPlayer.prototype.checkControlls = function(){
     if(Key.isDown(Key.RELOAD)){
         this.weapon.reload(); 
     }
+    if(Key.isDown(Key.CHAT)){
+        var bool = Pannel.toggleChatInput();  
+        if(bool){
+            //Chat opended
+            console.log("set 0");
+            this.render.camera.speed = 0;
+        }
+        else{
+            //Chat closed 
+            console.log("reset");
+            this.render.camera.speed = this.cameraSpeed;
+        }
+    } 
     //Check if two or more keys are pressed at the same time to slow down the camera
     //Otherwise the player would run faster when for example pressing "forward" and "right"
     /*
