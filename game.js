@@ -8,7 +8,7 @@ var	Player = require("./public/shared/models/Player").Player;
 //Global Variables
 var socket; 
 var	players;
-var spread = 30; //How far away the starting points of the players are
+var spread = 400; //How far away the starting points of the players are
 
 //Init function => will be called at the end of this file
 function init() {
@@ -44,7 +44,7 @@ function onClientConnect(client){
 	util.log("New Player has connected: " + client.id);
     //Create a player for this ID
 	//ToDo: Check if position is available for the loaded level
-	var newPlayer = new Player(Math.random() * spread , 0 , Math.random() * spread); 
+	var newPlayer = new Player((Math.random() - 0.5) * spread , 0 , (Math.random() - 0.5) * spread); 
 	newPlayer.setID(client.id);   
 	newPlayer.setColor(Math.random(), Math.random(), Math.random()); 
 	players.push(newPlayer);
