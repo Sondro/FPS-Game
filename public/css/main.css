@@ -88,6 +88,7 @@ html, body {
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
+    display: none;
 }
 
 #enter_user_name_center{
@@ -203,24 +204,23 @@ html, body {
 
 #amo{
     position: fixed;
-    width: 70px;
-    height: 40px;
-    background: rgba(0, 0, 0, 0.41);
+    width: 100px;
+    height: 50px; 
+    background: rgba(0, 0, 0, 0.51);
     bottom: 0px;
     right: 0px;
-    border-top: 2px solid #444;
     padding: 5px;
 }
 #currAmo{
     color: white;
-    font-size: 32px;
+    font-size: 40px;
     margin-left: 2px;
     text-align: right;
     width: 31px;
 }
 #amo img{
-    width: 30px;
-    height: 30px;
+    width: 43px;
+    height: 43px;
     position: absolute;
     right: 6px;
     top: 9px;

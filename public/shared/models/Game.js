@@ -1,1 +1,1 @@
-//Every instance of a created game has this 
+//Every instance of a created game has this model ... still in progress

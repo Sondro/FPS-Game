@@ -13,13 +13,13 @@ var Weapon = function(render, player) {
 
     //console.log(wp);    
     wp.isVisible = true; 
-    var s = 0.17;  
+    var s = 0.14;  
     wp.scaling = new BABYLON.Vector3(s,s,s);
     wp.rotationQuaternion = null;
     wp.rotation.x = -Math.PI/2;
     wp.rotation.y = Math.PI; 
     wp.parent = this.render.camera;
-    wp.position = new BABYLON.Vector3(0.7,-2.8,-1.3); 
+    wp.position = new BABYLON.Vector3(0.7,-2.8,-0.2); 
     this.mesh = wp;
 
     // The initial rotation

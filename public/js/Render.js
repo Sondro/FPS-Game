@@ -1,16 +1,25 @@
 /**
  * This is the Main Game Class for the Client, Babylon.js will be initilized here
  * the Level will be loaded and all the Players will be initilized and/or added in a later process
+ * The "pipline" goes like that =>
+ * 1. Init Babylon
+ * 2. Load Mesh
+ * 3. When 2. is done => Callback to request players
+ * 4. When 3. is done => Callback to start the rendering loop (Here the callback is the confirm of the server)
  */
  
 var Render = function(controller) {	  
         
     var _this = this;
-    this.assets = {};  
+    
     this.controller = controller;
+    //These remotePlayers and localPlayer should not be confused with the one in the controller
+    //The controller has the basic infos (just data), these two basicly extend these objects with game logic
     this.remotePlayers = [];
     this.localPlayer;
  
+    //Usually the player needs to put in a username and than can play the game, in this case dom should be already loaded
+    //But when coding, it is anyoing to always put in a username, with a little commenting in server.js this can be bypassed, and for that case this if statement is needed
     if(document.readyState == "complete"){
         this.init();
     } 
@@ -33,44 +42,19 @@ Render.prototype.init = function(){
     this.scene = new BABYLON.Scene(this.engine);
 
     this.sounds = new Sounds(this);
-    this.physics = new Physics(this.scene); 
     this.createCamera();
-    this.loadLevel();
-
-    this.scene.executeWhenReady(function () {
-        _this.moveMesh();
-        //This Tells the server to send information to the client
-        //This triggers a InitGame Method, from there on renderLoop and EventHandlers ... is started
-        _this.controller.requestAllPlayers(); 
-    });
+    this.levelManager = new LevelManager(this);
+    this.levelManager.loadLevel("standard", function(){
+        //Callback function when loading is done and all mesh isReady() == true
+        //Requesting all players from the server, as soon as the local player is loaded, the render loop is started
+        _this.controller.requestAllPlayers();
+    }); //Load Mesh
 }
 
 Render.prototype.createCamera = function(){
     //The local player is represetend by the camera as this is going to be a fps
     this.camera = new BABYLON.FreeCamera("FreeCamera", new BABYLON.Vector3(0, -8, -20), this.scene);
     this.camera.attachControl(this.canvas, true);
-}
-
-Render.prototype.loadLevel = function(){  
-    //Maybe I need a some sort of Level Load Class in case I want to have diffrent environments? Not sure yet
-    this.lights = new Lights(this.scene, false); 
-    this.sky = new Sky(this); 
-          
-    this.terrain = new Terrain(this);
-     
-    this.objectLoader = new ObjectLoader(this);
-    this.objectLoader.loadBoxes(); 
-    this.objectLoader.loadTrees();
-    this.objectLoader.loadBushes();
-    this.objectLoader.loadGun(); 
-    this.objectLoader.loadSoldire();
-    
-}
-//After mesh is loaded, it needs to be moved, but this can only be done, when the loading is done, for example to get the height of the heightfield at a certain point
-Render.prototype.moveMesh = function(){  
-    this.objectLoader.moveBoxes();
-    this.objectLoader.moveTrees(); 
-    this.objectLoader.moveBushes();
 }
  
 //Event Listeners
@@ -102,8 +86,8 @@ Render.prototype.renderLoop = function(){
 }
 
  
-//Methods called by the Controller to communicate with the Server
-//=================================================================
+//Methods called by the Controller or Calling a Method of the Controller
+//=======================================================================================
 Render.prototype.loadLocalPlayer = function(player){  
     this.localPlayer = new LocalPlayer(this, player); 
 

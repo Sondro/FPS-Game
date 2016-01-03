@@ -15,9 +15,8 @@ Physics.prototype.initLocalPlayer = function(camera){
     camera.applyGravity = true;
   
     //Set the ellipsoid around the camera (e.g. your player's size)
-    camera.ellipsoid = new BABYLON.Vector3(1.5, 2, 4.5);  
-	//Tried to move the ellipsoid a little forward because of the weapon ... but it doesnt make any difference :/
-    camera.ellipsoidOffset = new BABYLON.Vector3(0, 0, 1);
+    //y is the height, x and z need to be this big because of the weapon sticking out infront
+    camera.ellipsoid = new BABYLON.Vector3(4.8, 3, 4.8);  
 }
  
 Physics.prototype.initMesh = function(mesh){ 

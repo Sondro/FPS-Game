@@ -70,6 +70,13 @@ var Pannel = {
     },
     updateAmo: function(size){
         $("#currAmo").html(size);
+        if(size == 0){
+            $("#currAmo").css("color","red");
+        }
+        else{
+            $("#currAmo").css("color","white");
+        }
+
     }
     
 } 

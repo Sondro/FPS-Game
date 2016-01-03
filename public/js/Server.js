@@ -2,11 +2,11 @@
 var controller; //Global Controller Variable
 var socket; //global socket variable 
 
-//Start the whole thing
+//Starting point of the application!
 $(document).ready(function(){
     initSockets(); 
-    //addGameEvents(); 
-    //controller = new Controller();
+    addGameEvents(); 
+    controller = new Controller();
 });  
 
 function initSockets(){	
@@ -49,8 +49,8 @@ function onSocketDisconnect() {
 //Start actuall game after user entered username
 //The controller variable is a global variable from Controller.js 
 function onStartRender(){
-    addGameEvents();
-    controller = new Controller();
+    //addGameEvents();
+    //controller = new Controller();
 }
 //Initilizes the Game after the Client Requested it
 //data.localPlayer => model player object

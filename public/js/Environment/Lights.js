@@ -1,4 +1,6 @@
-
+/**
+ * Create Lights and Shadows
+ */
 var Lights = function(scene, shadowFlag) {	  
     this.shadowFlag = shadowFlag;
     

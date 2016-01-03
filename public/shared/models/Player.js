@@ -13,7 +13,7 @@ var Player = function(startX, startY, startZ) {
     this._color; // object{r,g,b}
     this._hitPoints = 100;
     this._isDead = false;
-    this._height = 4; 
+    this._height = 6; 
     
     //Stats
     this._deaths = 0;

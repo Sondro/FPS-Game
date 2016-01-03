@@ -1,6 +1,5 @@
 /**
  * Controller is the Connection between the IO.Socket calles and events in Server.js and the actual rendering
- * It is also the starting point of the application
  */
 
 var Controller = function(){
