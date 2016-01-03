@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+	<head>
+		<title>Test multiplayer Game</title>
+		<meta charset="utf-8">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300" type="text/css">
+		<link rel="stylesheet" href="css/main.css" type="text/css"/>
+	</head>
+	
+	<body>
+        <!-- Statistics Panel -->
+        <div id="stats">
+            <table>
+                <thead>
+                    <tr>
+                        <th align="left">Rank</th>
+                        <th align="left">Name</th>
+                        <th align="right">Kills</th>
+                        <th align="right">Deaths</th>
+                        <th align="right">Diff</th>
+                    </tr>
+                </thead>
+                <tbody> 
+                </tbody>
+            </table> 
+        </div>
+        <!-- You are DEAD Panel -->
+        <div id="you_are_dead">
+            <div id="dead_info">You died</div>
+            <div id="dead_info_small">Press "b" to respawn into the world</div>
+            <div id="dead_info_smaller">Press "^" to view statistics</div>
+        </div>
+        
+        <!-- Info Panel for user name input -->
+        <div id="enter_user_name"> 
+            <div id="enter_user_name_center">
+                <input id="input_user_name" placeholder="Enter a Username" />
+                <button id="submit_user_name">Join Game</button>
+            </div>
+        </div>
+        
+        <!-- Game Window -->
+        <div id="info_pannel">
+        </div> 
+        <div id="health_bar"><div id="health_filler"></div></div>
+        <img id="gunsight" src="css/images/gunPoint.png" />  
+        <div id="amo"><div id="currAmo"></div><img src="css/images/bulletIcon.png"/></div>
+        <div id="fps">0 fps</div>
+		<canvas id="gameCanvas"></canvas>
+	</body>
+	
+	<script src='http://localhost:8000/socket.io/socket.io.js'></script>
+	<script src="shared/models/Player.js"></script> 
+    <script src="shared/libs/Oimo.js"></script>  
+    <script src="shared/libs/babylon.2.2.max.js"></script>
+    <script src="shared/libs/babylon.stlFileLoader.js"></script>
+	<script src="shared/libs/jquery-1.11.3.min.js"></script>
+    
+    <script src="js/Pannels.js"></script>
+    <script src="js/Sounds.js"></script>
+        
+    <script src="js/Environment/Sky.js"></script>
+    <script src="js/Environment/Objects.js"></script>
+    <script src="js/Environment/Terrain.js"></script>
+    <script src="js/Environment/Lights.js"></script> 
+    
+    <script src="js/Weapon.js"></script>
+    <script src="js/LocalPlayer.js"></script>  
+    <script src="js/RemotePlayer.js"></script>     
+    <script src="js/Physics.js"></script>  
+	<script src="js/Key.js"></script>
+    <script src="js/Server.js"></script>  
+	<script src="js/Controller.js"></script>   
+	<script src="js/Render.js"></script> 
+ 
+</html>
