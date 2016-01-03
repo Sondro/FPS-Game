@@ -107,7 +107,7 @@ $("#submit_user_name").click(function(){
     if(userName != ""){
 		$(this).hide();
 		$(this).parents("#enter_user_name_center").append("<div id='wait_info'>Game is loading...</div>")
-        //sendUserName(userName);
+        sendUserName(userName);
     }
 });
 $("#chatInput").submit(function(e){
