@@ -71,7 +71,9 @@ Weapon.prototype.fire = function(){
             //Fire Sound
             this.render.sounds.gunFire();
             //Get pick result
-            var pickResult = this.render.scene.pick(this.render.scene.pointerX, this.render.scene.pointerY);
+			var width = this.render.engine.getRenderWidth();
+			var height = this.render.engine.getRenderHeight(); 
+            var pickResult = this.render.scene.pick(width/2, height/2, null, false, this.render.camera);
             //Ceck with all RemotePlayers
             if(pickResult.pickedMesh != null){
                 for (var i = 0; i < this.render.remotePlayers.length; i++) {
@@ -79,7 +81,7 @@ Weapon.prototype.fire = function(){
                         this.render.controller.hitPlayer(this.render.remotePlayers[i].player);
                     }
                 };
-                if(pickResult.pickedMesh.name == "ground")
+                if(pickResult.pickedMesh.name != "skyBox")
                     this.drawImpact(pickResult.pickedPoint);
             }
             this.render.controller.sendShotFired();
@@ -100,7 +102,7 @@ Weapon.prototype.drawImpact = function(position, rotation){
     // Impact impostor
     //this needs some work, like a decent texture and roation of the plane depending on the normal of the mesh at the point
     /*
-    var impact = BABYLON.Mesh.CreatePlane("impact", 0.5, this.render.scene);
+    var impact = BABYLON.Mesh.CreatePlane("impact", 1, this.render.scene);
     impact.rotation.x = Math.PI / 2;
     impact.material = new BABYLON.StandardMaterial("impactMat", this.render.scene);
     impact.material.diffuseTexture = new BABYLON.Texture("assets/textures/impact.png", this.render.scene);

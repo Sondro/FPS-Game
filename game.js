@@ -146,9 +146,11 @@ function onRespawnPlayer(){
 
 function onPlayerSuicide(){
     var suicidePlayer = playerById(this.id);
-    suicidePlayer.addDeath();
-    suicidePlayer.setDead(true);  
-    socket.emit("player dead", { id : this.id , killer: this.id});
+	if(!suicidePlayer.isDead()){
+		suicidePlayer.addDeath();
+		suicidePlayer.setDead(true);  
+		socket.emit("player dead", { id : this.id , killer: this.id});
+	}
 }
 
 function onShotFired(){

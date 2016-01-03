@@ -12,7 +12,7 @@ $(document).ready(function(){
 function initSockets(){	
     //Init socket.io , only allow websockets as transport medium
     //ToDo: Error handling should the Client not support Websockets
-	socket = io.connect("http://localhost:8000/", {transports: ["websocket"]}); 
+	socket = io.connect("http://185.82.21.82:8000/", {transports: ["websocket"]}); 
     
     //Register all Eventhandlers for incomming events
     socket.on("start render", onStartRender);
