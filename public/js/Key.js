@@ -15,6 +15,7 @@ var Key = {
     RESPAWN: 66, //B
     RELOAD: 82, //R
     CHAT: 17,//Strg
+	STATS: 73,//I
     
     //There could be writte a better method for the trigger event or probably even a better aproach to the whole thing
     //But it works for now ... but should totaly be changed later on
@@ -60,9 +61,19 @@ var Key = {
             if(this._triggered[this.CHAT] != true) bool3 = true;
             else bool3 = false;
 
-            this._triggered[this.CHAT] = true; 
+            this._triggered[this.CHAT] = true;  
             
             return bool3;
+        }
+		else if(keyCode == this.STATS && this._pressed[keyCode]){
+            //Reload only needs to be trigger once
+            var bool4;
+            if(this._triggered[this.STATS] != true) bool4 = true;
+            else bool4 = false;
+
+            this._triggered[this.STATS] = true;
+            
+            return bool4; 
         }
         else
             return this._pressed[keyCode];

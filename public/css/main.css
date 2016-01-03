@@ -106,7 +106,7 @@ html, body {
     padding: 8px;
     font-size: 19px;
     border: 1px solid gray;
-    width: 140px;
+    width: 400px;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -117,7 +117,7 @@ html, body {
 #wait_info{
 	margin-top: 40px;
     padding: 8px;
-    width: 400px;
+    width: 140px;
     margin-left: auto;
     margin-right: auto;
     display: block;

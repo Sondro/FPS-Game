@@ -31,12 +31,6 @@ var LocalPlayer = function(render, player) {
 	window.addEventListener('keydown', function(event) { Key.onKeydown(event); }, false); 
     window.addEventListener('mouseup', function(event) { Key.onKeyup(event); }, false);
     window.addEventListener('mousedown', function(event) { Key.onKeydown(event); }, false);
-    window.addEventListener("keydown", function(event) { 
-        //On ^ key press 
-        if(event.keyCode == 160){
-            Pannel.toggleStats(_this.render.controller.remotePlayers, _this.render.controller.localPlayer);
-        }
-    });
     
     //Show the Gunpointer in the middle of the screen
     Pannel.showGunPointer();
@@ -139,16 +133,17 @@ LocalPlayer.prototype.checkControlls = function(){
     if(Key.isDown(Key.RELOAD)){
         this.weapon.reload(); 
     }
+	if(Key.isDown(Key.STATS)){
+		Pannel.toggleStats(this.render.controller.remotePlayers, this.render.controller.localPlayer);
+	}
     if(Key.isDown(Key.CHAT)){
         var bool = Pannel.toggleChatInput();  
         if(bool){
             //Chat opended
-            console.log("set 0");
             this.render.camera.speed = 0;
         }
         else{
             //Chat closed 
-            console.log("reset");
             this.render.camera.speed = this.cameraSpeed;
         }
     } 
