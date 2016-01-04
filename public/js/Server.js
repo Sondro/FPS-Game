@@ -13,7 +13,7 @@ $(document).ready(function(){
     //controller = new Controller();
 });  
 
-function initSockets(){	
+function initSockets(){	 
     //Init socket.io , only allow websockets as transport medium
     //ToDo: Error handling should the Client not support Websockets
 	socket = io.connect("http://185.82.21.82:8000/", {transports: ["websocket"]}); 

@@ -101,14 +101,14 @@ Weapon.prototype.fire = function(){
 Weapon.prototype.drawImpact = function(position, rotation){
     // Impact impostor
     //this needs some work, like a decent texture and roation of the plane depending on the normal of the mesh at the point
-    /*
+    
     var impact = BABYLON.Mesh.CreatePlane("impact", 1, this.render.scene);
     impact.rotation.x = Math.PI / 2;
     impact.material = new BABYLON.StandardMaterial("impactMat", this.render.scene);
     impact.material.diffuseTexture = new BABYLON.Texture("assets/textures/impact.png", this.render.scene);
     impact.material.diffuseTexture.hasAlpha = true; 
     impact.position = position;
-    */
+    
 }
 
 Weapon.prototype.animate = function(){

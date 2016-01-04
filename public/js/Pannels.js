@@ -102,17 +102,23 @@ var Pannel = {
 
 //Other Event Handlers for 2D Buttons and so on ....
 //===========================================================
-$("#submit_user_name").click(function(){
-    var userName = $("#input_user_name").val();
-    if(userName != ""){
-		$(this).hide();
-		$(this).parents("#enter_user_name_center").append("<div id='wait_info'>Game is loading...</div>")
-        sendUserName(userName);
-    }
-});
 $("#chatInput").submit(function(e){
     e.preventDefault();
     Chat.sendMsg($("#chatInputField").val());
     $("#chatInputField").val("");
     return false;
+});
+
+$(document).ready(function(){
+	$("#input_user_name").focus();
+});
+$("#enter_username_form").submit(function(e){
+	e.preventDefault();
+	var userName = $("#input_user_name").val();
+    if(userName != ""){
+		$(this).hide();
+		$(this).parents("#enter_user_name_center").append("<div id='wait_info'>Game is loading...</div>")
+        sendUserName(userName);
+    }
+	return false;
 });

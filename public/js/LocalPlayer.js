@@ -133,9 +133,11 @@ LocalPlayer.prototype.checkControlls = function(){
     if(Key.isDown(Key.RELOAD)){
         this.weapon.reload(); 
     }
+	/*
 	if(Key.isDown(Key.STATS)){
 		Pannel.toggleStats(this.render.controller.remotePlayers, this.render.controller.localPlayer);
 	}
+	*/
     if(Key.isDown(Key.CHAT)){
         var bool = Pannel.toggleChatInput();  
         if(bool){
